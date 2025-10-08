@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
@@ -22,21 +23,26 @@ const Footer = () => {
   return (
     <footer className="w-full bg-secondary">
       <div className="bg-primary text-secondary py-12 lg:py-20 rounded-t-4xl">
-        <div className="container px-4 mx-auto">
+        <div className="container px-4 mx-auto font-outfit">
           <div className="grid lg:grid-cols-4 gap-12">
             {/* Company Info */}
             <div className="lg:col-span-2 space-y-6">
               <div>
-                <Link href="/" className="w-fit flex items-center">
-                  <img
+                <Link
+                  href="/"
+                  className="w-fit flex items-center bg-accent mb-6 px-6 p-1 rounded"
+                >
+                  <Image
                     src="/images/logo.png"
                     alt="GMT International Consulting"
-                    className="h-24 w-auto mb-4 brightness-0 invert"
+                    width={150}
+                    height={100}
+                    className="h-24 w-auto"
                   />
                 </Link>
-                <p className="text-primary-foreground/80 max-w-md leading-relaxed">
-                  A women-owned business specializing in empowering talent and
-                  restoring vitality in the life sciences industry.
+                <p className="text-xl text-secondary max-w-md leading-relaxed">
+                  A female-owned business specializing in empowering talent for
+                  the life sciences industry and beyond.
                 </p>
               </div>
 

@@ -27,7 +27,7 @@ const AboutSection: React.FC = () => {
         >
           <div className="mb-12 border-b-4 border-secondary-hover">
             <motion.h2
-              className="text-3xl lg:text-4xl font-bold mb-6"
+              className="font-outfit text-3xl lg:text-4xl font-bold mb-8"
               style={{ color: "#581042" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ const AboutSection: React.FC = () => {
             <p className="text-lg leading-8 text-primary">
               At GMT International Consulting, we empower life sciences
               organizations to thrive in an increasingly complex and competitive
-              landscape. With a deep understanding of the industry's scientific,
+              landscape. With a deep understanding of the industry&rsquo;s scientific,
               regulatory, and commercial dimensions, we deliver strategic
               consulting solutions that drive innovation, unlock talent, and
               accelerate growth.

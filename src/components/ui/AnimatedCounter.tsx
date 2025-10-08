@@ -27,7 +27,6 @@ const AnimatedCounter = ({
     if (isInView && !hasAnimated) {
       setHasAnimated(true);
       let startTime: number;
-      let startValue = 0;
 
       const animate = (timestamp: number) => {
         if (!startTime) startTime = timestamp;

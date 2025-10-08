@@ -7,7 +7,7 @@ import { BsArrowRight } from "react-icons/bs";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative bg-white py-16 lg:py-24 h-screen w-full overflow-hidden text-primary">
+    <section className="relative bg-accent py-16 lg:py-24 h-screen w-full overflow-hidden text-primary">
       <div className="container mx-auto px-4 h-full">
         <div className="flex h-full gap-8 lg:gap-12 items-center">
           {/* Left Content */}
@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
             </motion.h1>
 
             <motion.p
-              className="text-lg leading-relaxed max-w-2xl"
+              className="font-outfit font-light text-xl leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}

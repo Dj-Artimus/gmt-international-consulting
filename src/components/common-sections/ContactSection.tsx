@@ -7,7 +7,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
 
 const ContactSection: React.FC = () => {
-  const textareaRef = useRef(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const MIN_ROWS = 1;
   const MAX_ROWS = 5;
@@ -88,6 +88,7 @@ const ContactSection: React.FC = () => {
 
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("Error sending message:", error);
       // toast({
       //   title: "Error sending message",
       //   description: "Please try again later.",
@@ -107,9 +108,12 @@ const ContactSection: React.FC = () => {
     }));
   };
   return (
-    <section className="w-full mt-4 text-white bg-secondary">
+    <section
+      id="contact-section"
+      className="w-full mt-4 text-white bg-secondary"
+    >
       {/* Contact Heading */}
-      <div className="mx-auto px-4 text-center py-16 lg:py-20 bg-primary rounded-b-4xl">
+      <div className="font-poppins mx-auto px-4 text-center py-16 lg:py-20 bg-primary rounded-b-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,8 +121,8 @@ const ContactSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center pb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's Start Your Transformation
+          <h2 className="text-4xl md:text-5xl font-semibold mb-6">
+            Let&rsquo;s Start Your Transformation
           </h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
             Ready to empower your talent and restore vitality to your
@@ -129,11 +133,11 @@ const ContactSection: React.FC = () => {
 
       {/* Contact Details and Form */}
       <motion.div
-        initial={{ opacity: 0.8, y: 0 }}
+        initial={{ opacity: 0.8, y: -40 }}
         whileInView={{ opacity: 1, y: -80 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="bg-accent text-primary p-8 lg:px-10 lg:py-12 rounded-4xl max-w-4xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-8 justify-center divide-x-0 lg:divide-x-2 divide-secondary-hover"
+        className="font-poppins bg-accent text-primary p-8 lg:px-10 lg:py-12 rounded-4xl max-w-4xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-8 justify-center divide-x-0 lg:divide-x-2 divide-secondary-hover shadow-2xl hover:translate-y-[-4px] hover:shadow-md hover:shadow-primary/40 transition-all duration-500"
       >
         <div className="w-3/4 h-64 flex flex-col justify-between">
           <div className="space-y-12">
@@ -167,14 +171,22 @@ const ContactSection: React.FC = () => {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-fit bg-primary hover:bg-primary-hover rounded-full text-accent px-6 py-2.5 font-semibold cursor-pointer"
-            form="contact-form"
-            disabled={isSubmitting}
+
+          <motion.div
+            whileHover={{ scale: 1.02, y: -3 }}
+            whileTap={{ scale: 0.95, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="w-fit"
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </button>
+            <button
+              type="submit"
+              form="contact-form"
+              disabled={isSubmitting}
+              className="h-full w-fit inline-block bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-full cursor-pointer hover:shadow-lg transition-all duration-300"
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
+          </motion.div>
         </div>
         {/* Contact Form */}
         <form

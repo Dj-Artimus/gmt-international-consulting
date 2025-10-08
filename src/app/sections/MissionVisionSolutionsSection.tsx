@@ -29,7 +29,7 @@ const MissionVisionSolutionsSection: React.FC = () => {
       <div className=" bg-primary py-16 lg:py-20 rounded-t-4xl">
         <div className="container mx-auto space-y-16 lg:space-y-28">
           {/* Mission and Vision  */}
-          <div className="flex flex-col gap-8 lg:gap-2 max-w-1/2">
+          <div className="font-outfit flex flex-col gap-8 lg:gap-2 max-w-1/2">
             {/* Mission Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -40,9 +40,9 @@ const MissionVisionSolutionsSection: React.FC = () => {
             >
               <div className="flex items-center gap-3 text-primary bg-accent rounded-full w-fit px-6 py-2 pt-2.5">
                 <FaRegHeart className="w-5 h-5" />
-                <h3 className="text-xl font-semibold">Our Mission</h3>
+                <h3 className="text-2xl font-semibold">Our Mission</h3>
               </div>
-              <p className="leading-relaxed">
+              <p className="leading-relaxed text-xl">
                 To empower talent and restore vitality to the sciences
                 organizations through strategic consulting, innovative
                 solutions, and deep industry expertise. We believe that when
@@ -61,9 +61,9 @@ const MissionVisionSolutionsSection: React.FC = () => {
             >
               <div className="flex items-center gap-3 text-primary bg-accent rounded-full w-fit px-6 py-2 pt-2.5">
                 <BsGlobe2 className="w-5 h-5" />
-                <h3 className="text-xl font-semibold">Our Vision</h3>
+                <h3 className="text-2xl font-semibold">Our Vision</h3>
               </div>
-              <p className="leading-relaxed">
+              <p className="leading-relaxed text-xl">
                 A life sciences industry where every organization operates at
                 its highest potential, where talent is nurtured and empowered,
                 becoming a healthier world for everyone.
@@ -97,7 +97,7 @@ const MissionVisionSolutionsSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2, duration: 0.8 }}
                   viewport={{ once: true }}
-                  className="border-r-2 border-accent/50 last-of-type:border-r-0 px-6"
+                  className="font-outfit border-r-2 border-accent/50 last-of-type:border-r-0 px-6"
                 >
                   <div className="space-y-4 hover:translate-y-[-4px] transition-transform duration-500">
                     <h3 className="text-xl font-semibold text-white">
