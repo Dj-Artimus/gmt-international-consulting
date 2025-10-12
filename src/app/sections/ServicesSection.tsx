@@ -76,6 +76,7 @@ const ServicesSection: React.FC = () => {
 
   return (
     <motion.section
+      id="services"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}

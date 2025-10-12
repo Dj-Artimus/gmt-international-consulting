@@ -1,22 +1,17 @@
-import ContactSection from "../components/common-sections/ContactSection";
+import ContactSection from "@/components/common-sections/ContactSection";
 import AboutSection from "./sections/AboutSection";
-import CTASection from "./sections/CTASection";
 import HeroSection from "./sections/HeroSection";
-import MissionVisionSolutionsSection from "./sections/MissionVisionSolutionsSection";
+import MissionVisionStatementSolutionsSection from "./sections/MissionVisionStatementSolutionsSection";
+import ServicesSection from "./sections/ServicesSection";
 
-export default function Home() {
+export default function Services() {
   return (
-    <main className="relative w-full min-h-screen font-poppins">
-      {/* <div className="fixed top-0 left-0 w-full z-0"> */}
+    <main className="relative w-full min-h-screen font-poppins font-light">
       <HeroSection />
-      {/* </div> */}
-      {/* <div className="h-screen w-full z-0"></div> */}
-      {/* <div className="w-full h-full z-20"> */}
+      <ServicesSection />
       <AboutSection />
-      <MissionVisionSolutionsSection />
-      <CTASection />
+      <MissionVisionStatementSolutionsSection />
       <ContactSection />
-      {/* </div> */}
     </main>
   );
 }

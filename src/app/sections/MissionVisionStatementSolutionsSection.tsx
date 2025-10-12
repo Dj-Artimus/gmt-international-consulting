@@ -4,15 +4,25 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ServicesMissionVisionStatementSolutionsSection: React.FC = () => {
-  const consultingSolutions = [
+interface ConsultingSolution {
+  id: string;
+  title: React.ReactNode;
+  description: string;
+  image: string;
+}
+
+
+const MissionVisionStatementSolutionsSection: React.FC = () => {
+  const consultingSolutions: ConsultingSolution[]= [
     {
+      id: "talent-development-engagement",
       title: <>Talent Development & Engagement</>,
       description:
         "Strategic workforce development and leadership training tailored for life sciences professionals",
       image: "/images/consulting-meeting.jpg",
     },
     {
+      id: "leadership-empowerment",
       title: (
         <>
           Leadership <br /> Empowerment
@@ -23,6 +33,7 @@ const ServicesMissionVisionStatementSolutionsSection: React.FC = () => {
       image: "/images/leadership-training.jpg",
     },
     {
+      id: "career-coaching",
       title: (
         <>
           Career Transition <br /> Coaching
@@ -91,7 +102,7 @@ const ServicesMissionVisionStatementSolutionsSection: React.FC = () => {
             </motion.div>
           </div>
 
-          <div className="container mx-auto px-4">
+          <div id="consultancy-services" className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -112,6 +123,7 @@ const ServicesMissionVisionStatementSolutionsSection: React.FC = () => {
               {consultingSolutions.map((solution, index) => (
                 <motion.div
                   key={index}
+                  id={solution.id}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2, duration: 0.8 }}
@@ -155,4 +167,4 @@ const ServicesMissionVisionStatementSolutionsSection: React.FC = () => {
   );
 };
 
-export default ServicesMissionVisionStatementSolutionsSection;
+export default MissionVisionStatementSolutionsSection;

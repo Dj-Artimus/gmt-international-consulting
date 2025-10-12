@@ -5,19 +5,23 @@ import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { IoCall, IoLocationSharp, IoMail } from "react-icons/io5";
 
+interface navLinks {
+  name: string;
+  href: string;
+}
+
 const Footer = () => {
-  const quickLinks = [
+  const quickLinks: navLinks[] = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
 
-  const services = [
-    { name: "Talent Empowerment", href: "/services" },
-    { name: "Organizational Vitality", href: "/services" },
-    { name: "Industry Expertise", href: "/services" },
-    { name: "Strategic Consulting", href: "/services" },
+  const services: navLinks[] = [
+    { name: "Talent Development & Engagement", href: "#consultancy-services" },
+    { name: "Leadership Empowerment", href: "#consultancy-services" },
+    { name: "Career Transition Coaching", href: "#consultancy-services" },
   ];
 
   return (

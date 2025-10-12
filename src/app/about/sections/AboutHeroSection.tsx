@@ -58,7 +58,7 @@ const AboutHeroSection: React.FC = () => {
             className="absolute inset-0 right-0 bottom-0 w-full flex justify-end items-end"
           >
             <Image
-              src={"/images/gina-portrait.png"}
+              src={"/images/gina-portrait2.png"}
               alt="Portrait of Gina Thompson smiling"
               className="w-full max-w-md lg:max-w-lg h-auto object-cover"
               width={800}
