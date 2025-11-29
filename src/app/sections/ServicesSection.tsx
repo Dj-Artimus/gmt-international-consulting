@@ -1,20 +1,12 @@
 "use client";
 import AnimatedUnderline from "@/components/ui/AnimatedUnderline";
 import { motion } from "framer-motion";
-import React, { useRef, useState } from "react";
-import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Autoplay, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-type SwiperInstance = SwiperType;
+import React from "react";
 
 const ServicesSection: React.FC = () => {
-  const swiperRef = useRef<SwiperType | null>(null);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
-  // const [autoplayEnabled, setAutoplayEnabled] = useState(false);
+  const [flippedCards, setFlippedCards] = React.useState<{
+    [key: number]: boolean;
+  }>({});
 
   const services = [
     {
@@ -68,10 +60,21 @@ const ServicesSection: React.FC = () => {
     },
   ];
 
-  const handleSlideChange = (swiper: SwiperInstance) => {
-    setIsBeginning(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
-    console.log(isBeginning, isEnd);
+  // Helper to get pairs for the 3 cards
+  // Card 1: Front=0 (id 1), Back=3 (id 4)
+  // Card 2: Front=1 (id 2), Back=4 (id 5)
+  // Card 3: Front=2 (id 3), Back=5 (id 6)
+  const cardPairs = [
+    { front: services[0], back: services[3] },
+    { front: services[1], back: services[4] },
+    { front: services[2], back: services[5] },
+  ];
+
+  const handleCardClick = (index: number) => {
+    setFlippedCards((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   return (
@@ -82,7 +85,7 @@ const ServicesSection: React.FC = () => {
       transition={{ duration: 0.8 }}
       className="w-full bg-secondary rounded-t-4xl -translate-y-8 -mb-8"
     >
-      <div className="container mx-auto px-4 pt-16 lg:pt-20">
+      <div className="container mx-auto px-4 pt-16 lg:pt-20 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,70 +115,43 @@ const ServicesSection: React.FC = () => {
             </motion.h2>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: false, amount: 0.5 }}
-            onViewportEnter={() => swiperRef.current?.autoplay.start()}
-            onViewportLeave={() => swiperRef.current?.autoplay.stop()}
-          >
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              onSwiper={(swiper) => {
-                swiperRef.current = swiper;
-                handleSlideChange(swiper);
-              }}
-              onMouseEnter={() => swiperRef.current?.autoplay.stop()}
-              onMouseLeave={() => swiperRef.current?.autoplay.start()}
-              onSlideChange={handleSlideChange}
-              onInit={(swiper) => {
-                handleSlideChange(swiper);
-                swiper.autoplay.stop();
-              }}
-              spaceBetween={30}
-              slidesPerView={1}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                // 1280: { slidesPerView: 3.2 },
-              }}
-              navigation={{
-                prevEl: ".featured-prev-collection",
-                nextEl: ".featured-next-collection",
-              }}
-              loop={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-                stopOnLastSlide: false,
-              }}
-              speed={2500}
-            >
-              {services.map((service, index) => (
-                <SwiperSlide key={service.id}>
-                  {/* <Link */}
-                  <motion.div
-                    key={index}
-                    initial={{ y: 30 }}
-                    whileInView={{ y: 0 }}
-                    transition={{ duration: 2, delay: 0.1 }}
-                    // href={`/${service.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="group/animated-underline p-3 py-8"
-                  >
-                    <div className="flex justify-center items-center w-full min-h-72 h-[60vh] max-h-[600px] rounded-4xl bg-primary hover:scale-105 transition-transform duration-300 cursor-pointer">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {cardPairs.map((pair, index) => (
+              <div
+                key={index}
+                className="group group/animated-underline h-[400px] perspective-1000 cursor-pointer"
+                onClick={() => handleCardClick(index)}
+              >
+                <div
+                  className={`relative w-full h-full transition-all duration-700 transform-style-3d ${
+                    flippedCards[index] ? "rotate-y-180" : ""
+                  }`}
+                >
+                  {/* Front Face */}
+                  <div className="absolute w-full h-full backface-hidden">
+                    <div className="flex justify-center items-center w-full h-full rounded-4xl bg-primary p-6">
                       <h2 className="text-3xl font-outfit font-semibold text-center leading-relaxed text-white">
-                        <AnimatedUnderline underlineColor="primary">
-                          {service.name}
+                        <AnimatedUnderline underlineColor="white">
+                          {pair.front.name}
                         </AnimatedUnderline>
                       </h2>
                     </div>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
+                  </div>
+
+                  {/* Back Face */}
+                  <div className="absolute w-full h-full backface-hidden rotate-y-180">
+                    <div className="flex justify-center items-center w-full h-full rounded-4xl bg-white border-2 border-primary p-6">
+                      <h2 className="text-3xl font-outfit font-semibold text-center leading-relaxed text-primary">
+                        <AnimatedUnderline underlineColor="primary">
+                          {pair.back.name}
+                        </AnimatedUnderline>
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </motion.section>
