@@ -119,7 +119,7 @@ const ServicesSection: React.FC = () => {
             {cardPairs.map((pair, index) => (
               <div
                 key={index}
-                className="group group/animated-underline h-[400px] perspective-1000 cursor-pointer"
+                className="group group/animated-underline min-h-72 h-[60vh] max-h-[600px] perspective-1000 cursor-pointer"
                 onClick={() => handleCardClick(index)}
               >
                 <div
